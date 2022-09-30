@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState, useRef, useEffect } from "react";
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const countRef = useRef(0);
+
+  countRef.current = count;
+
+  useEffect(() => {
+    setTimeout(() => {
+      alert("You clicked on: " + countRef.current);
+    }, 3000);
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+      {/* <button onClick={handleAlertClick}>Show alert</button> */}
     </div>
   );
 }
